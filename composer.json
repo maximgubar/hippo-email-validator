@@ -1,0 +1,24 @@
+{
+  "name": "maximgubar/hippo-email-validator",
+  "type": "library",
+  "description": "Library for validating email address with emailhippo service",
+  "keywords": ["email", "validation", "emailhippo"],
+  "minimum-stability": "stable",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Maksym Hubar",
+      "email": "maxim.gubar@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=7.4.9",
+    "psr/log": "^1.1",
+    "symfony/http-client": "^5.1"
+  },
+  "autoload": {
+    "psr-4": {
+      "Nrgone\\EmailHippo\\Validator\\": "src/"
+    }
+  }
+}
