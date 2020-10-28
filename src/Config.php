@@ -2,7 +2,7 @@
 
 namespace Nrgone\EmailHippo\Validator;
 
-class Config
+class Config implements ConfigInterface
 {
     private bool $isEnabled;
 

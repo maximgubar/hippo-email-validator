@@ -7,13 +7,13 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class Validator
 {
-    private Config $config;
+    private ConfigInterface $config;
 
     private HttpClientInterface $httpClient;
 
     private LoggerInterface $logger;
 
-    public function __construct(Config $config, HttpClientInterface $httpClient, LoggerInterface $logger)
+    public function __construct(ConfigInterface $config, HttpClientInterface $httpClient, LoggerInterface $logger)
     {
         $this->config = $config;
         $this->httpClient = $httpClient;
@@ -33,7 +33,7 @@ class Validator
         } catch (\Exception $exception) {
             $this->logger->error(sprintf('Failed to validate email [%s].', $email));
             $this->logger->error($exception->getMessage(), $exception->getTrace());
-            return false;
+            return true;
         }
     }
 
