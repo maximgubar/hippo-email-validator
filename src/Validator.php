@@ -36,6 +36,23 @@ class Validator
             return true;
         }
     }
+    
+    public function isExist(string $email): bool
+    {
+        if (!$this->config->isEnabled()) {
+            return true;
+        }
+
+        try {
+            $validationResult = $this->validate($email);
+            return !(isset($validationResult['emailVerification']['mailboxVerification']['reason'])
+                && ($validationResult['emailVerification']['mailboxVerification']['reason'] === 'MailboxDoesNotExist'));
+        } catch (\Exception $exception) {
+            $this->logger->error(sprintf('Failed to validate email [%s].', $email));
+            $this->logger->error($exception->getMessage(), $exception->getTrace());
+            return true;
+        }
+    }
 
     private function validate($email): array
     {
